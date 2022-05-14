@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from datetime import datetime
+import schedule as sch
+import time
 
 html_text = requests.get('https://reg.tni.ac.th/registrar/calendar.asp')
 html_text.encoding = 'TIS-620'
@@ -47,7 +49,23 @@ for i in range(0,calendarDataframe.shape[0]):
         year = calendarDataframe.start[i][7:12]
     try :
         month = calendarDataframe.start[i][3:8]
-        notificationDates.append(datetime(int(year),thaiMonth[month],int(day)))
+        notificationDates.append(datetime(int(year)-543,thaiMonth[month],int(day)))
     except KeyError:
         month = calendarDataframe.start[i][2:7]
-        notificationDates.append(datetime(int(year),thaiMonth[month],int(day)))
+        notificationDates.append(datetime(int(year)-543,thaiMonth[month],int(day)))
+
+testNow = datetime(2022,5,19)
+
+def notify() :
+    for i in range(0,len(notificationDates)):
+        if now.date() == notificationDates[i].date() :
+            print(calendarDataframe.event[i])
+        else :
+            print("No event found today")
+            break
+
+sch.every().day.at("06:00").do(notify)
+
+while True :
+    sch.run_pending()
+    time.sleep(3600)
