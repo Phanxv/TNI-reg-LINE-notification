@@ -12,7 +12,7 @@ data_table = soup.find_all('table')[4]
 
 calendar_dataframe = pd.DataFrame(columns = ['','event','start','end'])
 
-LINE_token = 'rcfbWycKZu71qZKynhsoR86mCjNEbog425U9uIbZPhY'
+LINE_token = 'LINE_TOKEN'
 LINE_headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
     'Authorization': 'Bearer ' + LINE_token
