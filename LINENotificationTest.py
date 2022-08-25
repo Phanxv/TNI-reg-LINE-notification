@@ -1,6 +1,6 @@
 import requests
 
-token = 'rcfbWycKZu71qZKynhsoR86mCjNEbog425U9uIbZPhY'
+token = 'LINE_TOKEN'
 
 headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
